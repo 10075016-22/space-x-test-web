@@ -35,7 +35,7 @@ Ingresa tus credenciales de AWS:
 ### 2. Ejecutar el Script de Despliegue
 
 ```bash
-cd infrastructure
+cd infra
 chmod +x deploy.sh
 ./deploy.sh
 ```
@@ -53,10 +53,21 @@ En tu repositorio de GitHub, ve a Settings > Secrets and variables > Actions y a
 - `AWS_ACCESS_KEY_ID`: Tu Access Key de AWS
 - `AWS_SECRET_ACCESS_KEY`: Tu Secret Key de AWS
 
+### Variables de Entorno del Pipeline
+
+El pipeline usa estas variables de entorno predefinidas (no necesitas cambiarlas):
+
+- `AWS_REGION`: us-east-1
+- `ECR_REPOSITORY`: spacex-web
+- `ECS_SERVICE`: spacex-web-service
+- `ECS_CLUSTER`: spacex-web-cluster
+- `ECS_TASK_DEFINITION`: infra/ecs-task-definition.json
+- `CONTAINER_NAME`: spacex-web
+
 ## Estructura de Archivos
 
 ```
-infrastructure/
+infra/
 ├── cloudformation-template.yml  # Plantilla de infraestructura
 ├── deploy.sh                    # Script de despliegue automatizado
 └── README.md                    # Este archivo

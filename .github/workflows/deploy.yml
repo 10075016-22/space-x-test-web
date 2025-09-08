@@ -11,7 +11,7 @@ env:
   ECR_REPOSITORY: spacex-web
   ECS_SERVICE: spacex-web-service
   ECS_CLUSTER: spacex-web-cluster
-  ECS_TASK_DEFINITION: infrastructure/ecs-task-definition.json
+  ECS_TASK_DEFINITION: infra/ecs-task-definition.json
   CONTAINER_NAME: spacex-web
 
 jobs:
