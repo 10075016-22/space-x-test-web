@@ -8,7 +8,7 @@ env:
   AWS_REGION: us-east-1
   ECR_REPOSITORY: spacex-web
   ECS_CLUSTER: spacex-web-cluster
-  ECS_SERVICE: spacex-web-service
+  ECS_SERVICE: spacex-web-service-c7iivj2i
   ECS_TASK_DEFINITION: infra/ecs-task-definition.json
   CONTAINER_NAME: spacex-web
 
@@ -69,6 +69,18 @@ jobs:
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
+
+      - name: Ensure ECS service exists (create if missing)
+        env:
+          AWS_PAGER: ""
+        run: |
+          set -e
+          if ! aws ecs describe-services --cluster $ECS_CLUSTER --services $ECS_SERVICE --region $AWS_REGION | jq -e '.services[0].serviceArn' > /dev/null; then
+            echo "ECS service $ECS_SERVICE not found. Creating..."
+            aws ecs create-service --cli-input-json file://infra/ecs-service.json --region $AWS_REGION
+          else
+            echo "ECS service $ECS_SERVICE exists."
+          fi
 
       - name: Render new ECS task definition
         id: task-def
