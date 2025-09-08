@@ -1,8 +1,8 @@
-# 🚀 SpaceX Web
+# SpaceX Web
 
 Aplicación Next.js + TypeScript con visualizaciones (Chart.js) que consume una API externa configurable (`NEXT_PUBLIC_API_URL`). Incluye cache en hooks, reducción de peticiones y CI/CD a ECS Fargate sin ALB.
 
-## 🏗️ Arquitectura
+## Arquitectura
 
 ### Stack
 - Next.js 15 + TypeScript + Tailwind CSS
@@ -30,7 +30,7 @@ src/
 └── styles/               # Estilos globales
 ```
 
-## 🚀 Desarrollo local
+## Desarrollo local
 
 ### Prerrequisitos
 - Node.js 18+
@@ -58,14 +58,14 @@ npm run dev
 ```
 Abre http://localhost:3000
 
-## ✅ Cambios recientes clave
+## Cambios recientes clave
 - Hooks optimizados: `useSuccessRate`, `useLaunchesByYear`, `useRocketUsage`, `useDashboardCharts` (carga paralela + caché en memoria 5 min)
 - `useSmartCharts` reducido a 3 gráficas reales
 - Menos peticiones por segundo y prevención de bucles
 - Lint/TypeScript estrictos; `debounce` con tipos seguros
 - CI/CD en `.github/workflows/deploy.yml`
 
-## 🐳 Docker
+## Docker
 
 ```bash
 # Build imagen
@@ -76,7 +76,7 @@ docker run -p 3000:3000 spacex-web
 ```
 > Opcional: docker-compose puede añadirse según necesidad.
 
-## ☁️ Despliegue en AWS (sin ALB)
+## Despliegue en AWS (sin ALB)
 
 ### Preparación inicial (una sola vez)
 ```bash
@@ -106,10 +106,31 @@ NEXT_PUBLIC_API_URL=https://your-api-url.com
 NEXT_PUBLIC_API_KEY=your-api-key
 ```
 
-## 🧪 Testing
-Los scripts de test están deshabilitados en CI por ahora. Puedes habilitarlos cuando se agreguen Jest/Playwright.
+## Testing
+Actualmente este proyecto no incluye pruebas automatizadas. El comando `npm test` imprime un mensaje y finaliza con código 0 para no bloquear el pipeline.
 
-## 📝 Scripts
+Para habilitar pruebas unitarias con Jest:
+1) Instalar dependencias:
+```bash
+npm i -D jest ts-jest @types/jest
+```
+2) Inicializar configuración:
+```bash
+npx ts-jest config:init
+```
+3) Actualizar `package.json`:
+```json
+{
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage"
+  }
+}
+```
+4) Añadir tus tests en `**/*.test.ts`.
+
+## Scripts
 ```bash
 npm run dev          # Desarrollo
 npm run build        # Build producción
@@ -117,10 +138,10 @@ npm run start        # Producción
 npm run lint         # ESLint
 npm run lint:fix     # ESLint --fix
 npm run type-check   # TypeScript
-npm run test         # Placeholder (pasa en CI)
+npm run test         # Placeholder (actualmente no ejecuta pruebas)
 ```
 
-## 🤝 Contribución
+## Contribución
 1. Fork
 2. Rama feature: `git checkout -b feature/xyz`
 3. Commit: `git commit -m "feat: ..."`
