@@ -16,7 +16,7 @@ export function useLaunchStats() {
     if (hasFetched.current) return;
     hasFetched.current = true;
 
-    const fetchStats = async () => {
+    const doFetch = async () => {
       setLoading(true);
       setError(null);
 
@@ -44,14 +44,8 @@ export function useLaunchStats() {
       }
     };
 
-    fetchStats();
+    doFetch();
   }, []);
 
-  const refetch = async () => {
-    hasFetched.current = false;
-    statsCache.delete('launch-stats');
-    await fetchStats();
-  };
-
-  return { stats, loading, error, refetch };
+  return { stats, loading, error };
 }

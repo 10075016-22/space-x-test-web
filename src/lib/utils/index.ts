@@ -103,7 +103,7 @@ export function generateId(): string {
 /**
  * Debounce function para optimizar búsquedas
  */
-export function debounce<T extends (...args: unknown[]) => unknown>(
+export function debounce<T extends (...args: any[]) => any>(
   func: T,
   wait: number
 ): (...args: Parameters<T>) => void {

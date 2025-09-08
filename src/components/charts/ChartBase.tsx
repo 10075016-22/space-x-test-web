@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { ChartData } from '@/lib/types';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -41,17 +42,7 @@ export type ChartType = 'line' | 'bar' | 'doughnut' | 'pie' | 'radar';
 
 export interface ChartBaseProps {
   type: ChartType;
-  data: {
-    labels: string[];
-    datasets: {
-      data: number[];
-      backgroundColor?: string | string[];
-      borderColor?: string | string[];
-      borderWidth?: number;
-      fill?: boolean;
-      tension?: number;
-    }[];
-  };
+  data?: ChartData | null;
   title?: string;
   subtitle?: string;
   height?: number;

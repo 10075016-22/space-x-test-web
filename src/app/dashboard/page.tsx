@@ -64,21 +64,21 @@ export default function DashboardPage() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
           <ChartBase
             type="doughnut"
-            data={chartsData?.successRate}
+            data={chartsData?.successRate ?? null}
             title="Tasa de Éxito General"
             subtitle={chartsLoading ? "Cargando datos reales..." : "Distribución de resultados de lanzamientos"}
             height={350}
           />
           <ChartBase
             type="line"
-            data={chartsData?.launchesByYear}
+            data={chartsData?.launchesByYear ?? null}
             title="Frecuencia de Lanzamientos por Año"
             height={350}
           />
           
           <ChartBase
             type="pie"
-            data={chartsData?.rocketUsage}
+            data={chartsData?.rocketUsage ?? null}
             title="Uso de Cohetes"
             subtitle="Distribución del uso de diferentes tipos de cohetes"
             height={350}

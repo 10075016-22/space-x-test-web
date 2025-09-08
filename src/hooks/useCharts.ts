@@ -2,8 +2,8 @@ import { useState, useEffect, useCallback, useRef } from 'react';
 import { ChartData } from '@/lib/types';
 import { chartsService } from '@/lib/api/charts';
 
-// Sistema de caché simple
-const cache = new Map<string, { data: ChartData; timestamp: number }>();
+// Sistema de caché simple (permite distintos tipos de datos)
+const cache = new Map<string, { data: unknown; timestamp: number }>();
 const CACHE_DURATION = 5 * 60 * 1000; // 5 minutos
 
 // Hook simple para cualquier gráfica con caché
@@ -21,7 +21,7 @@ export function useChart(
     // Verificar caché primero
     const cached = cache.get(cacheKey);
     if (cached && Date.now() - cached.timestamp < CACHE_DURATION) {
-      setData(cached.data);
+      setData(cached.data as ChartData);
       setLoading(false);
       return;
     }
@@ -69,7 +69,6 @@ const fetchSuccessRate = async (): Promise<ChartData> => {
   return {
     labels: rawData.labels,
     datasets: [{
-      label: 'Distribución de Lanzamientos',
       data: rawData.statistics,
       backgroundColor: ['#10B981', '#EF4444', '#F59E0B'],
       borderColor: ['#059669', '#DC2626', '#D97706'],
@@ -85,7 +84,6 @@ const fetchLaunchesByYear = async (): Promise<ChartData> => {
   return {
     labels: rawData.labels,
     datasets: [{
-      label: 'Lanzamientos por Año',
       data: rawData.statistics,
       backgroundColor: "#3B82F6",
       borderColor: "#2563EB",
