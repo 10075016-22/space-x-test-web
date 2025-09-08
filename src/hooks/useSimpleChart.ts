@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { ChartData } from '@/lib/types';
 import { chartsService } from '@/lib/api/charts';
 

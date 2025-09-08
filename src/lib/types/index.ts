@@ -330,7 +330,7 @@ export interface ChartConfig {
   subtitle?: string;
   height?: number;
   data: ChartData;
-  options?: any;
+  options?: Record<string, unknown>;
 }
 
 // Tipos para el estado global
@@ -382,6 +382,6 @@ export interface Column<T> {
   key: keyof T;
   label: string;
   sortable?: boolean;
-  render?: (value: any, row: T) => React.ReactNode;
+  render?: (value: unknown, row: T) => React.ReactNode;
   width?: string;
 }

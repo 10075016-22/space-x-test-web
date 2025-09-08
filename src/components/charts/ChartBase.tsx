@@ -56,7 +56,7 @@ export interface ChartBaseProps {
   subtitle?: string;
   height?: number;
   className?: string;
-  options?: any;
+  options?: Record<string, unknown>;
 }
 
 const defaultColors = [

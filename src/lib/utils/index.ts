@@ -24,7 +24,7 @@ export function formatDate(
       return 'Fecha inválida';
     }
     return format(date, formatString, { locale: es });
-  } catch (error) {
+  } catch {
     return 'Fecha inválida';
   }
 }
@@ -56,7 +56,7 @@ export function formatRelativeDate(dateString: string): string {
     } else {
       return format(date, 'dd/MM/yyyy', { locale: es });
     }
-  } catch (error) {
+  } catch {
     return 'Fecha inválida';
   }
 }
@@ -103,7 +103,7 @@ export function generateId(): string {
 /**
  * Debounce function para optimizar búsquedas
  */
-export function debounce<T extends (...args: any[]) => any>(
+export function debounce<T extends (...args: unknown[]) => unknown>(
   func: T,
   wait: number
 ): (...args: Parameters<T>) => void {
@@ -117,7 +117,7 @@ export function debounce<T extends (...args: any[]) => any>(
 /**
  * Throttle function para limitar la frecuencia de ejecución
  */
-export function throttle<T extends (...args: any[]) => any>(
+export function throttle<T extends (...args: unknown[]) => unknown>(
   func: T,
   limit: number
 ): (...args: Parameters<T>) => void {
@@ -157,7 +157,7 @@ export function extractDomain(url: string): string {
 /**
  * Convierte un objeto a query string
  */
-export function objectToQueryString(obj: Record<string, any>): string {
+export function objectToQueryString(obj: Record<string, unknown>): string {
   const params = new URLSearchParams();
   
   Object.entries(obj).forEach(([key, value]) => {

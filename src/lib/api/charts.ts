@@ -29,8 +29,7 @@ export const chartsService = {
   },
 
   // Métricas de Rendimiento
-  async getLaunchFrequency(startYear?: number, endYear?: number): Promise<ChartData> {
-    const params = new URLSearchParams();
+  async getLaunchFrequency(): Promise<ChartData> {
     return apiRequest<ChartData>(`/launches-by-year`);
   },
 

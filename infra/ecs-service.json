@@ -2,7 +2,7 @@
   "serviceName": "spacex-web-service",
   "cluster": "spacex-web-cluster",
   "taskDefinition": "spacex-web-task",
-  "desiredCount": 2,
+  "desiredCount": 1,
   "launchType": "FARGATE",
   "platformVersion": "LATEST",
   "networkConfiguration": {
@@ -17,22 +17,10 @@
       "assignPublicIp": "ENABLED"
     }
   },
-  "loadBalancers": [
-    {
-      "targetGroupArn": "arn:aws:elasticloadbalancing:REGION:ACCOUNT_ID:targetgroup/spacex-web-tg/xxxxxxxxx",
-      "containerName": "spacex-web",
-      "containerPort": 3000
-    }
-  ],
   "deploymentConfiguration": {
     "maximumPercent": 200,
-    "minimumHealthyPercent": 50,
-    "deploymentCircuitBreaker": {
-      "enable": true,
-      "rollback": true
-    }
+    "minimumHealthyPercent": 50
   },
-  "healthCheckGracePeriodSeconds": 60,
   "enableExecuteCommand": true,
   "tags": [
     {

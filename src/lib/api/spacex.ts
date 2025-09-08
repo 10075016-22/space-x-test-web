@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Launch, LaunchFilters, LaunchStats, Rocket, Launchpad } from '@/lib/types';
+import { Launch, LaunchFilters, LaunchStats } from '@/lib/types';
 
 // Configuración de la API
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';

@@ -139,7 +139,7 @@ export const useAppStore = create<AppStore>()(
 
         // Sort
         filtered.sort((a, b) => {
-          let aValue: any, bValue: any;
+          let aValue: unknown, bValue: unknown;
           
           switch (filters.sortBy) {
             case 'name':
