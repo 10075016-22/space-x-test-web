@@ -103,14 +103,16 @@ export function generateId(): string {
 /**
  * Debounce function para optimizar búsquedas
  */
-export function debounce<T extends (...args: unknown[]) => unknown>(
-  func: T,
+export function debounce<A extends unknown[], R>(
+  func: (...args: A) => R,
   wait: number
-): (...args: Parameters<T>) => void {
-  let timeout: NodeJS.Timeout;
-  return (...args: Parameters<T>) => {
+): (...args: A) => void {
+  let timeout: ReturnType<typeof setTimeout>;
+  return (...args: A) => {
     clearTimeout(timeout);
-    timeout = setTimeout(() => func(...args), wait);
+    timeout = setTimeout(() => {
+      void func(...args);
+    }, wait);
   };
 }
 
