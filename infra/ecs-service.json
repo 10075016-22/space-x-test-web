@@ -1,5 +1,5 @@
 {
-  "serviceName": "spacex-web-service",
+  "serviceName": "spacex-web-service-c7iivj2i",
   "cluster": "spacex-web-cluster",
   "taskDefinition": "spacex-web-task",
   "desiredCount": 1,
